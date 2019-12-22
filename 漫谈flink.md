@@ -1,0 +1,30 @@
+## Flink是什么？
+Flink是一个框架，是一个用于有限（bounded）或者无限（unbounded）数据流上进行有状态计算的分布式处理引擎。
+
+### 处理框架
+
+![image](https://ci.apache.org/projects/flink/flink-docs-release-1.2/fig/processes.svg)
+
+Flink的软件栈如图一所示，其核心是distributed dataflow engine用于执行数据流处理程序。Flink运行时程序是一个通过有状态的算子连接的数据流的有向无环图（DAG），对上提供有限数据流的DataSet API和无限数据流的DataStream API。
+
+如图二所示，Flink集群包含三类角色，client、JobManager和TaskManager。client将数据处理程序转换为DAG图并提交到JobManager。JobManager协调程序的执行，并跟踪每一个算子的状态以实现故障恢复。TaskManager从JobManager处接收需要部署的Task，负责具体数据处理程序的执行，一个TaskManager执行一个或者多个算子处理数据流，并将状态上报至JobManager。
+
+这里的算子就是一个独立数据处理程序，常用的有map、flatmap、keyBY、sum、apply、reduce、window等。其中，map和flatMap的区别是map是一对一的映射，既一个输入对应一个输出。faltMap是一对多映射，一个输入对应0个或者多个输出。
+
+通过上述论述，Flink程序的实质就是用多个算子组合在一起形成一个有向无环图，理解了这一点flink的程序就不难理解了。下面有个简单的例子：
+
+## 简单示例
+```java
+DataStream<String> lines= env.addSource(new FlinkKafkaConsumer<>(...));
+DtatStream<> = lines.flatMap(...)
+events.keyBy()
+      .timeWindow(Time.seconds(10))
+      .apply(...)
+      .addSink(...);
+```
+
+![image](https://ci.apache.org/projects/flink/flink-docs-release-1.2/fig/program_dataflow.svg)
+
+
+### 参考
+Apache Flink: Stream and Batch Processing in a Single Engine
