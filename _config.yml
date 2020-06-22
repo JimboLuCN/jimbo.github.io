@@ -1,1 +1,12 @@
-theme: jekyll-theme-time-machine
+title: jimbo Blog
+SEOTitle: 顽石的博客 | jimbo Blog
+email: jimbolucn@gmail.com
+description: "每天进步一点点"
+keyword: "jimbo, jimbo Blog, 顽石的博客"
+url: "https://jimbolucn.github.io"
+baseurl: ""
+
+sidebar: true
+sidebar-about-description: ""
+
+
