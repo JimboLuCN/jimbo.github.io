@@ -32,9 +32,6 @@ const PRECACHE_LIST = [
 ]
 const HOSTNAME_WHITELIST = [
   self.location.hostname,
-  "huangxuan.me",
-  "yanshuo.io",
-  "cdnjs.cloudflare.com"
 ]
 const DEPRECATED_CACHES = ['precache-v1', 'runtime', 'main-precache-v1', 'main-runtime']
 
@@ -79,7 +76,7 @@ const endWithExtension = (req) => Boolean(new URL(req.url).pathname.match(/\.\w+
 //    .ext?blah -> !(sw 302 -> .ext/?blah -> gh 404) -> .ext?blah
 // If It's a navigation req and it's url.pathname isn't end with '/' or '.ext'
 // it should be a dir/repo request and need to be fixed (a.k.a be redirected)
-// Tracking https://twitter.com/Huxpro/status/798816417097224193
+// Tracking https://twitter.com/Jimbopro/status/798816417097224193
 const shouldRedirect = (req) => (isNavigationReq(req) && new URL(req.url).pathname.substr(-1) !== "/" && !endWithExtension(req))
 
 // The Util Function to get redirect URL
@@ -236,7 +233,7 @@ function sendMessageToAllClients(msg) {
  */
 function sendMessageToClientsAsync(msg) {
   // waiting for new client alive with "async" setTimeout hacking
-  // https://twitter.com/Huxpro/status/799265578443751424
+  // https://twitter.com/Jimbopro/status/799265578443751424
   // https://jakearchibald.com/2016/service-worker-meeting-notes/#fetch-event-clients
   setTimeout(() => {
     sendMessageToAllClients(msg)
