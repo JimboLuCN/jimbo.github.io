@@ -9,4 +9,5 @@ baseurl: ""
 sidebar: true
 sidebar-about-description: ""
 
-
+ga_track_id: 'UA-170246875-1'
+ga_domain: auto
